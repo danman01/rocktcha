@@ -4,6 +4,10 @@ Rocktcha::Application.routes.draw do
   resources :songs
   get "passed" => "root#passed"
   get "not_passed" => "root#not_passed"
+  get "remote_passed" => "root#remote_passed"
+  get "remote_not_passed" => "root#remote_not_passed"
+  get "challenge/:session_id" => "root#incoming_challenge"
+  get "answer/:session_id/:answer" => "root#incoming_answer"
 
   root "root#splash"
   # The priority is based upon order of creation: first created -> highest priority.
