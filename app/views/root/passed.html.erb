@@ -1,0 +1,8 @@
+<h2>Success!</h2>
+<h3>
+  Continue with your purchase of <%= pluralize(@tickets,"ticket") %> and hear more sounds on <%= link_to "SoundCloud", @song.url %>
+</h3>
+<br />
+<%= button_to "Purchase Tickets" %>
+<br />
+<p><%= image_tag("#{@song.image}") %></p>

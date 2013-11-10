@@ -12,8 +12,11 @@ class ReceivedAnswersController < ApplicationController
     end
     respond_to do |format|
       if @received_answer.save
-        format.html { redirect_to root_url, notice: "Passed? #{@received_answer.passed ? true: false}!" }
-        format.json { render action: 'show', status: :created, location: @received_answer }
+        if @received_answer.passed
+          format.html { redirect_to "/passed?song_id=#{@rocksesh.song.id}&tickets=#{params[:tickets]}", notice: "You passed! Continue with your purchase" }
+        else
+          format.html { redirect_to "/not_passed?song_id=#{@rocksesh.song.id}", notice: "You did not pass. Maybe you shouldn't be here" }
+        end
       else
         format.html { render action: 'new' }
         format.json { render json: @received_answer.errors, status: :unprocessable_entity }

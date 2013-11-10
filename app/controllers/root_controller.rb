@@ -14,4 +14,13 @@ class RootController < ApplicationController
     @rockanswer = @rocksesh.received_answers.build()
     # if the user reloads the page with the same session, a new rocksesh is generated for that session
   end
+
+  def not_passed
+    @song = Song.find_by(id: params[:song_id])
+  end
+
+  def passed
+    @song = Song.find_by(id: params[:song_id])    
+    @tickets = params[:tickets]
+  end
 end

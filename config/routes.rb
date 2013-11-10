@@ -2,6 +2,8 @@ Rocktcha::Application.routes.draw do
   resources :received_answers 
   devise_for :users
   resources :songs
+  get "passed" => "root#passed"
+  get "not_passed" => "root#not_passed"
 
   root "root#splash"
   # The priority is based upon order of creation: first created -> highest priority.
