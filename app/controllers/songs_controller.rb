@@ -25,19 +25,26 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.json
   def create
-    new_params = parse_new_song(song_params)
-    new_song_params = song_params
-    new_song_params.merge!(new_params) # merge in parsed params for saving
-    @song = Song.new(new_song_params)
-    puts "\n Song: \n #{@song.to_yaml} \n"    
-    respond_to do |format|
-      if @song.save
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @song }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
+    begin
+      new_params = parse_new_song(song_params)
+      new_song_params = song_params
+      new_song_params.merge!(new_params) # merge in parsed params for saving
+      @song = Song.new(new_song_params)
+      puts "\n Song: \n #{@song.to_yaml} \n"    
+      respond_to do |format|
+        if @song.save
+          format.html { redirect_to @song, notice: 'Song was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @song }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @song.errors, status: :unprocessable_entity }
+        end
       end
+
+    rescue
+      puts "Error parsing!"
+      flash[:error]="There was an error!"
+      @song = nil
     end
   end
 

@@ -43,6 +43,8 @@
 </div>
 <br />
 <br />
+<h1>Get Started with RockTCHA now!</h1>
+<br />
 <ul>
   <li><b>It Works!</b> Fans listen to a short clip and then type in the song name to submit the web form</li>
   <li><b>It's Free!</b> Yup.</li>
@@ -51,6 +53,15 @@
   <li><b>It's Easy</b>If they are a fan of yours. And if they're not? Screw them!! They aren't getting through.</li>
   <li><b>It's Less Annoying</b> Than a CAPTCHA or one of those new ads that ticketmaster now uses so they can annoy you and get paid</li>
 </ul>
-<%= link_to "Get Started With Your RockTCHA Now!", new_song_path, class: 'btn center' %>
+<% if user_signed_in? %>
+  <%= link_to "Add songs to RockTCHA", new_song_path %>
+<% end %>
 
-
+<h3>Steps:</h3>
+<ul>
+  <li>Send a request to http://rocktcha.herokuapp.com/challenge/anyUniqueSessionHere</li>
+  <li>Send your users' response to http://rocktcha.herokuapp.com/challenge/theSameUniqueSessionHere/usersAnswer</li>
+  <li>Parse the response! Correct is a 1, incorrect is 0</li>
+  <li>Finally only let in users who ROCK!</li>
+</ul>
+<br /><br />
