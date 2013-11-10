@@ -1,0 +1,2 @@
+module ReceivedAnswerHelper
+end

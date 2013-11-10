@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rock_session_id: 1
+  answer: MyString
+  passed: false
+
+two:
+  rock_session_id: 1
+  answer: MyString
+  passed: false

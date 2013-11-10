@@ -1,0 +1,6 @@
+<h1>ReceivedAnswer#index</h1>
+<ul>
+  <% ReceivedAnswer.all.each do |answer| %>
+    <li><%= answer.answer %>. Passed? <%= answer.passed ? true : false%></li>
+  <% end %>
+</ul>

@@ -1,0 +1,53 @@
+<div class="row">
+  <h3>Here's some of the latest innovation in the world of deterring robots upon form submission:</h3>
+  <div class="span3">
+    <h4>The DragDropTcha</h4>
+    <%= image_tag("dragdroptcha.png") %>
+  </div>
+  <div class="span3">
+    <h4> The AdTcha </h4>
+    <%= image_tag("adtcha.png") %>
+  </div>
+  <div class="span3">
+    <h4> The AudioTcha</h4>
+    <%= image_tag("audiocaptcha.png") %>
+  </div>
+</div>
+<h1>What's missing from these? Verifying your visitors are awesome! How do you know the people coming to your site are the cool people you WANT on your site?</h1>
+<h1>Introducing RockTCHA</h1>
+<p>Allowing REAL FANS through to your most protected pages</p>
+<p>Like the J-Beiber VIP presale at Madison Square Garden fanclub page.</p>
+<p>If the ticket brokers get in there, it's game over for all the real fans</p>
+<p>Use RockTCHA on your site and use the power of ROCK to protect against spam and unwanted guests</p>
+<h3>So how does it work?</h3>
+<div>
+  <%= image_tag("#{@rocksesh.song.image}") %>
+  <%= form_for @rockanswer do |f| %>
+    <%= label_tag :tickets,"How many tickets would you like?" %><br />
+    <%= select_tag :tickets, options_for_select([1,2,3,4,5,6,7,8]) %><br />
+    
+    <%= f.label :answer, "Play the clip below and fill in the song name to submit the form and defeat the RockTCHA"%><br />
+    <iframe width="<%=@rocksesh.song.width%>" height="<%=@rocksesh.song.height%>" src="<%=@rocksesh.song.video_url%>" frameborder="0" allowfullscreen></iframe>
+    <%= f.hidden_field :rock_session_id, :value => @rocksesh.id%>
+    <br />
+    <br />
+    <br />
+    <%= f.text_field :answer %><br />
+    <br />
+    <%= f.submit "Submit Answer" %><br />
+  <% end %>
+
+</div>
+<br />
+<br />
+<ul>
+  <li><b>It Works!</b> Fans listen to a short clip and then type in the song name to submit the web form</li>
+  <li><b>It's Free!</b> Yup.</li>
+  <li><b>It's Useful</b> Why let anyone through who doesn't know the titles to your songs?</li>
+  <li><b>It's Secure</b>Seriously if they don't know the name your songs, they won't get through </li>
+  <li><b>It's Easy</b>If they are a fan of yours. And if they're not? Screw them!! They aren't getting through.</li>
+  <li><b>It's Less Annoying</b> Than a CAPTCHA or one of those new ads that ticketmaster now uses so they can annoy you and get paid</li>
+</ul>
+<%= link_to "Get Started With Your RockTCHA Now!", new_song_path, class: 'btn center' %>
+
+
