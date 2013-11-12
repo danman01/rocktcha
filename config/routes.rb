@@ -7,7 +7,7 @@ Rocktcha::Application.routes.draw do
   get "remote_passed" => "root#remote_passed"
   get "remote_not_passed" => "root#remote_not_passed"
   get "challenge/:session_id" => "root#incoming_challenge"
-  get "answer/:session_id/:answer" => "root#incoming_answer"
+  match "answer/:session_id(/:answer)" => "root#incoming_answer", via: [:get,:post]
 
   root "root#splash"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,4 +1,7 @@
 class RootController < ApplicationController
+  layout :false, :only=>[:incoming_answer,:incoming_challenge]
+  protect_from_forgery :except => [:incoming_answer]
+
   def splash
     # user can submit to this url to enter a rockTCHA challenge based on their session
     @receivedsesh = ReceivedSession.find_or_create_by(:session_id=>request.session_options[:id],:ip=>request.remote_ip)
@@ -51,20 +54,6 @@ class RootController < ApplicationController
       @received_answer.passed = false
     end
     @received_answer.passed ? @response = 1 : @response = 0
-    #respond_to do |format|
-    #  if @received_answer.save
-    #    if @received_answer.passed
-    #      # took out &tickets=#{params[:tickets]}
-    #      format.html { redirect_to "/remote_passed?song_id=#{@rocksesh.song.id}", notice: "You passed! Continue with your purchase" }
-    #    else
-    #      format.html { redirect_to "/remote_not_passed?song_id=#{@rocksesh.song.id}", notice: "You did not pass. Maybe you shouldn't be here" }
-    #    end
-    #  else
-    #    format.html { render action: 'new' }
-    #    format.json { render json: @received_answer.errors, status: :unprocessable_entity }
-    #  end
-    #end
-
   end
 
   def remote_passed

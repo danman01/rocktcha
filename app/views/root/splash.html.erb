@@ -62,9 +62,30 @@
 
 <h3>Steps:</h3>
 <ul>
-  <li>Send a request to http://rocktcha.herokuapp.com/challenge/anyUniqueSessionHere</li>
-  <li>Send your users' response to http://rocktcha.herokuapp.com/answer/theSameUniqueSessionHere/usersAnswer</li>
-  <li>Parse the response! Correct is a 1, incorrect is 0</li>
+  <li>Send a request to http://rocktcha.herokuapp.com/challenge/anyUniqueSessionHere.<br />
+    If using in your web form, embed an iframe. Or you can just use the url structure to pass in params: /challenge/unique_session and /answer/unique_session/the_answer
+  </li>
+  <li>Using the same unique session id as above as a url parameter, send your users' response to http://rocktcha.herokuapp.com/answer/theSameUniqueSessionHere/usersAnswer via get or post
+    <p>Here's an example form, also available at /example: </p>
+    <xmp>
+      <form action="//rocktcha.herokuapp.com/answer/anyUniqueSessionHere/" method="post" accept-charset="utf-8">
+        <label for="song">Enter the name of the song to defeat the RockTCHA</label>
+        <br />
+        <iframe src="//rocktcha.herokuapp.com/challenge/anyUniqueSessionHere" width=90 height=110 seamless='seamless'></iframe>
+        <br />
+        <br />
+        <input type="text" name="answer" id="" value="" />
+        <input type="submit" name="submit" id="" value="Submit Answer" />
+      
+      </form>
+    </xmp>
+  
+  </li>
+
+  <li>Parse the response! If the user knows the track name, a correct response is given, 1. If not, it's incorrect, 0.</li>
   <li>Finally only let in users who ROCK!</li>
 </ul>
 <br /><br />
+<h3>Want to add your own songs to a RockTCHA? Send me a tweet and I'll set it up for you: <%= link_to "@danman01","https://twitter.com/danman01" %> </h3>
+<br /><br />
+Made at Music Hack Day Boston 2013 // Uses SoundCloud for the music and song metadata
