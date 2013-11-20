@@ -7,6 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navbar navbar-fixed-bottom">
+    <nav class="navbar-inner">
+      <div class="container">
+        <%= link_to "RockTCHA", root_path, :class => 'brand' %>
+        <ul class="nav">
+          <% if user_signed_in? %>
+            <li><%= link_to "Add Songs", "/songs/by_user/#{current_user.username}" %></li>
+            <li>
+            <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
+            </li>
+          <% else %>
+            <li>
+            <%= link_to 'Login', new_user_session_path %>  
+            </li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li>
+            <%= link_to 'Edit account', edit_user_registration_path %>
+            </li>
+            <% if current_user.has_role? :admin %>
+              <li>
+              <%= link_to 'Admin', users_path %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
   <div class="flash-container">
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "alert alert-#{key}") %>
@@ -16,6 +46,9 @@
     <%= yield %>
     
   </div>
+  <br />
+  <br />
+  <br />
 
 </body>
 </html>

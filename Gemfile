@@ -18,7 +18,13 @@ gem "opengraph", github: 'danman01/opengraph'
 #gem 'sass-rails', '~> 3.2'
 #gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'sass-rails', '>= 3.2' # sass-rails needs to be higher than 3.2
-gem 'bootstrap-sass', '~> 3.0.2.0'
+gem 'bootstrap-sass', '~> 2.0'
+
+#roles
+gem 'easy_roles'
+
+# admin backend
+gem 'rails_admin'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

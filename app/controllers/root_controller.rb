@@ -6,10 +6,10 @@ class RootController < ApplicationController
     # user can submit to this url to enter a rockTCHA challenge based on their session
     @receivedsesh = ReceivedSession.find_or_create_by(:session_id=>request.session_options[:id],:ip=>request.remote_ip)
     # their session is then attached to a random song
-    size = Song.all.size
     first_id = Song.first.id
+    song_ids = Song.all.map(&:id)
     # assuming there's no gaps in song ids...
-    num = rand(first_id..((first_id-1) + size))
+    num = song_ids.sample
     song = Song.find(num)
 
     @rocksesh = song.rock_sessions.create(:received_session_id=>@receivedsesh.id)
@@ -27,7 +27,7 @@ class RootController < ApplicationController
     @tickets = params[:tickets]
   end
 
-  # can also have a :username param after the session id. so, /challange/session_id/username (pulls from username songs) OR /challange/session_id (pulls from ALL songs)
+  # can also have a :username param after the session id. so, /challenge/session_id/username (pulls from username songs) OR /challenge/session_id (pulls from ALL songs)
   def incoming_challenge
     # user can submit to this url to enter a rockTCHA challenge based on their session
     @receivedsesh = ReceivedSession.find_or_create_by(:session_id=>params[:session_id],:ip=>request.remote_ip)

@@ -1,0 +1,46 @@
+<% unless @songs.empty? %>
+  <h1>Listing songs added by <%= @user.username %></h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Url</th>
+        <th>Listen</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @songs.each do |song| %>
+        <tr>
+          <td><%= song.name %></td>
+          <td><%= song.url %></td>
+          <td><iframe width="<%=song.width%>" height="<%=song.height%>" src="<%=song.video_url%>" frameborder="0" allowfullscreen></iframe>
+          </td>
+          <td><%#= link_to 'Show', song %></td>
+          <td><%#= link_to 'Edit', edit_song_path(song) %></td>
+          <td><%#= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h1>No songs yet. Add some below!</h1>
+<% end %>
+<br>
+<h2>Add new songs for <%= @user.username %></h2>
+<%= form_for @user do |f| %>
+  <%= f.fields_for :songs do |builder| %>
+    <%= render 'songs/song_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add Song", f, :songs, 'btn btn-success'%>
+  <br />
+  <br />
+  <p>
+    <%= f.submit "Update Song List", class: 'btn' %>
+  </p>
+<% end %>
+  
