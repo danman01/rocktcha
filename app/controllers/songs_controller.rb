@@ -25,27 +25,22 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.json
   def create
-    begin
-      new_params = parse_new_song(song_params)
-      new_song_params = song_params
-      new_song_params.merge!(new_params) # merge in parsed params for saving
-      @song = Song.new(new_song_params)
-      puts "\n Song: \n #{@song.to_yaml} \n"    
-      respond_to do |format|
-        if @song.save
-          format.html { redirect_to @song, notice: 'Song was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @song }
-        else
-          format.html { render action: 'new' }
-          format.json { render json: @song.errors, status: :unprocessable_entity }
-        end
+    #new_params = parse_new_song(song_params)
+    #new_song_params = song_params
+    #new_song_params.merge!(new_params) # merge in parsed params for saving
+    #@song = Song.new(new_song_params)
+    @song = Song.new(song_params)
+    puts "\n Song: \n #{@song.to_yaml} \n"    
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to @song, notice: 'Song was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @song }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
       end
-
-    rescue
-      puts "Error parsing!"
-      flash[:error]="There was an error!"
-      @song = nil
     end
+
   end
 
   # PATCH/PUT /songs/1
@@ -72,6 +67,11 @@ class SongsController < ApplicationController
     end
   end
 
+  def all_by_user
+    @user = User.find_by(:username => params[:username])
+    @songs = @user.songs
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_song
@@ -92,7 +92,7 @@ class SongsController < ApplicationController
 
   def build_song_params(params,content)
     content_params=nil    
-    if !content["video"].blank? 
+    if !content["video"].blank?
       case content["site_name"].downcase
       when "soundcloud"
         # change auto play to false

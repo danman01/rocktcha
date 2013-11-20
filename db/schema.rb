@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131110173422) do
+ActiveRecord::Schema.define(version: 20131120161434) do
 
   create_table "received_answers", force: true do |t|
     t.integer  "rock_session_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20131110173422) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

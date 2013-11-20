@@ -1,2 +1,6 @@
-<iframe width="<%=@rocksesh.song.width%>" height="<%=@rocksesh.song.height%>" src="<%=@rocksesh.song.video_url%>" frameborder="0" allowfullscreen></iframe>
+<% if defined?(@rocksesh) %>
+  <iframe width="<%=@rocksesh.song.width%>" height="<%=@rocksesh.song.height%>" src="<%=@rocksesh.song.video_url%>" frameborder="0" allowfullscreen></iframe>
+<% else %>
+  <p style="height:80px;width:70px;"><%= flash[:notice] %></p> 
+<% end %>
 

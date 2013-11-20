@@ -1,12 +1,15 @@
 Rocktcha::Application.routes.draw do
   resources :received_answers 
   devise_for :users
+  resources :users
   resources :songs
+  get "/songs/by_user/:username" => "songs#all_by_user"
+
   get "passed" => "root#passed"
   get "not_passed" => "root#not_passed"
   get "remote_passed" => "root#remote_passed"
   get "remote_not_passed" => "root#remote_not_passed"
-  get "challenge/:session_id" => "root#incoming_challenge"
+  get "challenge/:session_id(/:username)" => "root#incoming_challenge"
   match "answer/:session_id(/:answer)" => "root#incoming_answer", via: [:get,:post]
 
   root "root#splash"
