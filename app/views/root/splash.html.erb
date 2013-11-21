@@ -1,4 +1,5 @@
 <h2>Tired of CAPTCHAs? Tired of Ticket scalpers gettin all the good stuff?</h2>
+<br />
 <h1>Introducing RockTCHA! Prevent robots and unwanted people from getting past your web forms</h1>
 <br />
 <br />
@@ -56,8 +57,8 @@
   <li><b>It Works!</b> Fans listen to a short clip and then type in the song name to submit the web form</li>
   <li><b>It's Free!</b> Yup.</li>
   <li><b>It's Useful</b> Why let anyone through who doesn't know the titles to your songs?</li>
-  <li><b>It's Secure</b>Seriously if they don't know the name your songs, they won't get through </li>
-  <li><b>It's Easy</b>If they are a fan of yours. And if they're not? Screw them!! They aren't getting through.</li>
+  <li><b>It's Secure</b> Seriously if they don't know the name your songs, they won't get through </li>
+  <li><b>It's Easy</b> If they are a fan of yours. And if they're not? Screw them!! They aren't getting through.</li>
   <li><b>It's Less Annoying</b> Than a CAPTCHA or one of those new ads that ticketmaster now uses so they can annoy you and get paid</li>
 </ul>
 <% if user_signed_in? %>
@@ -90,6 +91,8 @@
   <li>Finally only let in users who ROCK!</li>
 </ul>
 <br /><br />
-<h3>Want to add your own songs to a RockTCHA? Send me a tweet and I'll set it up for you: <%= link_to "@danman01","https://twitter.com/danman01" %> </h3>
+<h3>Want to add your own songs to a RockTCHA? <%= link_to "Sign up for an account",new_user_session_path%> and then you can add your songs.</h3>
+<h4> Then your challenge will pull from your songs by adding in an additional `username` param:<br /> /challenge/unique_id/usernameThatYouChooseDuringSignup.<br /></h4>
+<p> Send me a tweet and I'll help you get set up <%= link_to "@danman01","https://twitter.com/danman01" %> </p>
 <br /><br />
 Made at Music Hack Day Boston 2013 // Uses SoundCloud for the music and song metadata
